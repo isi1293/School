@@ -1,64 +1,47 @@
 #include <stdio.h>
 #include <string.h>
 #include "city_structure.h"
-//structure defined in header with elements:
-//	char name[50];
-//	double lat, lon;
-//	int pop;
-
-void ingest_file(FILE *fp); //funtion to read and parse data from file
-
-void print(int size, struct CIITY *cities);
 
 int main(void)
 { 
-	struct CITY cities[50];
+	struct CITY cities[50]; //Array of struct CITY, with 50 max elements
 	FILE *fp;
-	buffer[50];
-	char word[50];
-	int num, n;
+	char buffer[50],word[50];//Buffer to store user input, word to store parsed data
+	int num, n, size;
 
-	printf("Hello! Enter the name of a city or a number to begin, '?' for help.\n")
-	fgets(buffer,50,stdin);
-	n = sscanf(buffer,"%d%s",num,entry);
+	size = ingest_file(fp, cities);//This function opens the data file for reading, 
+				       //stores the data in an array of struct CITY, closes
+				       //the file, and returns the size of the array (i.e.
+				       //the number of lines in the file)
 	
-	if(n == 1)
+	while(1)
 	{
-
-	//BETA
+		//Once file is read, capture user input and determine desired function.
+		//Loop until user breaks with Ctrl-D
+		if(NULL == fgets(buffer,50,stdin)) 
+		{
+			printf("Goodbye!\n");
+			break;
+		}
+		
+		n = sscanf(buffer,"%d", &num);
 	
-	if(entry == "?")
-	{
-		printf("Help message, mention structure of data, commands, etc\n");
-	}	
-
-	if(entry == "*")
-	{
-		print(cities);
-	}
-
-	if(type(entry) == int)
-	{
-		Access_array(cities);
+		if(n == 1)
+		{
+			pass_int(num,cities);	//If main function determines the input as data type int,
+						//it calls function which will print the element at the 
+					     	//location specified by the user
+		}
+		else
+		{
+			n = sscanf(buffer,"%s",word); 
+			pass_string(size,word,cities);
+							//if main function determines the input as data type
+						       //string (array of chars), it calls function which 
+						       //will determine what kind of command ('cityname',
+						       //'?','*') has been inputted and deal with it 
+						       //appropriately
+		}
 	}
 
 } 
-
-int ingest_file(FILE *fp)
-{
-	int size;
-
-	char buffer[500]; //buffer to store individual lines from the file for parsing
-
-	fp = fopen(filename,"/usr/local/bin/cities.dat");
-	
-	if(NULL == fopen(filename,"/usr/local/bin/cities.dat")
-	{
-		printf("Could not open the data file :(\n");
-	}
-
-	fclose(fp);
-	return size;
-}
-
-
