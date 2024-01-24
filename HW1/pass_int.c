@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "city_structure.h"
 
 //This function prints the elements of city[num]

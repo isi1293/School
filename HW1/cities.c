@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <string.h>
 #include "city_structure.h"
 
 int main(void)
