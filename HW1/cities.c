@@ -1,4 +1,9 @@
+//Isaac Osorio Beltran
+//CSE 222, Prof. Nick Macias
+//HW1, City Structure
+
 #include "city_structure.h"
+
 
 int main(void)
 { 

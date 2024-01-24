@@ -1,6 +1,6 @@
 gcc_sw=-g
 main: cities.o ingest_file.o pass_int.o pass_string.o
-	gcc -o main cities.o ingest_file.o pass_int.o pass_string.o
+	gcc -o main cities.o ingest_file.o pass_int.o pass_string.o -lm
 cities.o: cities.c
 	gcc $(gcc_sw) -c cities.c 
 ingest_file.o: ingest_file.c

@@ -1,7 +1,7 @@
 #include "city_structure.h"
 #include <math.h>
 
-void closest_city(int index, struct CITY *cities, int size, struct CITY city);
+void closest_city(int index, struct CITY *cities, int size);
 
 void pass_string(int size, char *word, struct CITY cities[50])
 {
@@ -10,9 +10,11 @@ void pass_string(int size, char *word, struct CITY cities[50])
 		if(0 == strcmp(word, cities[i].name))
 		{
 			printf("[%d] %s %lf %lf %d\n", i, cities[i].name, cities[i].lat, cities[i].lon, cities[i].pop);
-			closest_city(i,cities,size,cities[i]);
+			closest_city(i,cities,size);
 		}
 	}
+	
+	//If user input is not the name of a city, determine what they want displayed.
 
 	int help_message, print_all;
 
@@ -33,24 +35,31 @@ void pass_string(int size, char *word, struct CITY cities[50])
 	}
 }
 
-void closest_city(int city_index, struct CITY *cities, int size, struct CITY city)
+void closest_city(int city_index, struct CITY *cities, int size)
 {
-	double temp;
+	double temp,a,b;
 	int distance=0; //Need to initialize to 0 to access and "re-initialize" on first pass of for loop
 	int closest_index;
 
 	for(int i=0; i<size; i++)
 	{
+
 		if(city_index!=i)
 		{
-			if(distance==0)
+
+			a=cities[city_index].lon-cities[i].lon;
+			b=cities[city_index].lat-cities[i].lat;
+
+			if(distance==0);
 			{
-				distance=sqrt((pow((city.lon-cities[i].lon),2))+(pow((city.lat-cities[i].lat),2)));
+				distance=sqrt(pow(a,2)+pow(b,2));
 				temp=distance;
+				closest_index=i;
 				continue;
 			}
 			
-			distance=sqrt(pow((city.lon-cities[i].lon),2)+pow((city.lat-cities[i].lat),2));
+			distance=sqrt((a*a)+(b*b));
+
 			if(distance<temp)
 			{
 				temp=distance;
