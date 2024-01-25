@@ -1,15 +1,17 @@
 #include "city_structure.h"
-#include <math.h>
 
-void closest_city(int index, struct CITY *cities, int size);
+void closest_city(int index, struct CITY *cities, int size); //Function to determine the closest city using pythagorean formula
 
-void pass_string(int size, char *word, struct CITY cities[50])
-{
-	for(int i=0; i<size; i++)
+void pass_string(int size, char *word, struct CITY *cities) //Pass_string makes sense of the string entered to the program and 
+{							   //prints out the appropriate response
+	int result; //Variable to hold result of strcmp
+
+	for(int i=0; i<size; i++) //Loops through entire city list, looking for an exact match with cities name
 	{
-		if(0 == strcmp(word, cities[i].name))
+		result=strcmp(word,cities[i].name);
+		if(0 == result)
 		{
-			printf("[%d] %s %lf %lf %d\n", i, cities[i].name, cities[i].lat, cities[i].lon, cities[i].pop);
+			printf("Name: %s\nLatitude: %.4lf\nLongitude: %.4lf\nPopulation: %d\n", cities[i].name, cities[i].lat, cities[i].lon, cities[i].pop);
 			closest_city(i,cities,size);
 		}
 	}
@@ -23,44 +25,56 @@ void pass_string(int size, char *word, struct CITY cities[50])
 
 	if(help_message == 0)
 	{
-		printf("Enter an integer or name to see information of specific\ncity, as well as information on the nearest city.\n\nEnter '*' to display every city in the array\n");
+		printf("Command summary:\n* - print all city data\ninteger - print that city's info\ncityname - print that city's info, along with the name of the closest city\n? - print this help message\n^D - exit\n\n");
 	}
 	if(print_all == 0)
 	{
 		for(int i=0; i<size; i++)
 		{
-			printf("[%d] %s %lf %lf %d\n", i, cities[i].name, cities[i].lat, cities[i].lon, cities[i].pop);
+			printf("(%d) Name: %s\nLatitude: %.4lf\nLongitude: %.4lf\nPopulation: %d\n\n", i, cities[i].name, cities[i].lat, cities[i].lon, cities[i].pop);
 		}
 
 	}
+	else
+	{
+		printf("No city matching '%s' found. Enter '?' for help\n", word);
+	}
 }
 
-void closest_city(int city_index, struct CITY *cities, int size)
+void closest_city(int city_index, struct CITY *cities, int size) //Function prints closest city when the name of a city is given
+								 //to executable. City_index is the index of the city specified by
+								 //the user. *cities is the entire city list. size is the size of said list
 {
-	double temp,a,b;
-	int distance=0; //Need to initialize to 0 to access and "re-initialize" on first pass of for loop
-	int closest_index;
+	double a,b; //These variable hold the difference between lat and lon of the city specified by
+		    //the user and the one that the for loop is comparing it to. Think of these variables
+		    //as the opposite and adjacent sides of a triangle, which enables us to use the 
+		    //Pythagorean theorem 
 
+	int closest_index; //Index of the current closest city
+
+	double temp,distance=999.999;	//I initialized distance to a large, obscure, number so that the conditional if satement
+					//in the for loop can not be accessed except for on the first pass. 
 	for(int i=0; i<size; i++)
 	{
 
-		if(city_index!=i)
+		if(city_index!=i) //Don't compare the city to itself, otherwise the closest city will be itself
 		{
 
-			a=cities[city_index].lon-cities[i].lon;
-			b=cities[city_index].lat-cities[i].lat;
+			a=(cities[city_index].lon-cities[i].lon);
+			b=(cities[city_index].lat-cities[i].lat);
 
-			if(distance==0);
+			if(distance==999.999) //This conditional statement 'initializes' distance once again on the first pass
 			{
 				distance=sqrt(pow(a,2)+pow(b,2));
-				temp=distance;
-				closest_index=i;
+				temp=distance; //Temp stores the current smallest distance
+				closest_index=i;//Similarly, closest_index stores the index of the
+						//city that produced the smallest distance 
 				continue;
 			}
 				
-			distance=sqrt(pow(a,2)+pow(b,2));
-			if(distance<temp)
-			{
+			distance=sqrt(pow(a,2)+pow(b,2)); //A squared plus B squared equals C squared \(O.O)/
+			if(distance<temp) //If the function finds a distance smaller than all previous distances 
+			{		  //it sets temp and closest_index to those new values
 				temp=distance;
 				closest_index=i;
 			}
@@ -71,11 +85,7 @@ void closest_city(int city_index, struct CITY *cities, int size)
 		}		
 
 	}
-	a=cities[city_index].lon-cities[closest_index].lon;
-	b=cities[city_index].lat-cities[closest_index].lat;
-	distance=sqrt(pow(a,2)+pow(b,2));
-	printf("\n\na= %lf, b= %lf, distance: %d\n\n",a,b,distance);
-	printf(">>Closest City<<\nName: %s\nLat: %lf\nLon:%lf\nPop:%d\n",cities[closest_index].name,cities[closest_index].lat,cities[closest_index].lon,cities[closest_index].pop);
+	printf("Closest City is %s\n\n", cities[closest_index].name);
 
 }
 
