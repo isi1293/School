@@ -1,3 +1,10 @@
+//Isaac Osorio Beltran
+//CSE 222, Prof. Nick Macias
+//1/24/2024
+//Description: The pass_string.c function is called only in the case the user enters a single string
+//it then determines if the user entered the name of a city in the list, a '*' or a '?'. It handles
+//each case differently and prints the appropriate response.
+
 #include "city_structure.h"
 
 void closest_city(int index, struct CITY *cities, int size); //Function to determine the closest city using pythagorean formula

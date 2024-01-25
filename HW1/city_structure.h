@@ -1,10 +1,16 @@
+//Isaac Osorio Beltran
+//CSE 222, Prof. Nick Macias
+//1/24/2024
+//Description: This header file includes all the necessary libraries,
+//prototypes, and structure definitions to make the main program work
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
 
-struct CITY {
-	char name[120];
+struct CITY { 			//Structure defined as specified in	
+	char name[120];		//assignment instructions
 	double lat;
 	double lon;
 	int pop;

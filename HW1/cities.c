@@ -1,8 +1,13 @@
 //Isaac Osorio Beltran
 //CSE 222, Prof. Nick Macias
-//HW1, City Structure
+//1/24/2024
+//Description: This main file determines what kind of input the user 
+//enters, then passes that data to it's respective function pass_int 
+//or pass_string. Loops until the user exits. 
 
-#include "city_structure.h"
+#include "city_structure.h" //Header file that includes all necessary 
+			    //libraries, struct definition, prototypes,
+			    //etc.
 
 
 int main(void)
