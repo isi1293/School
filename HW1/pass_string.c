@@ -57,9 +57,8 @@ void closest_city(int city_index, struct CITY *cities, int size)
 				closest_index=i;
 				continue;
 			}
-			
-			distance=sqrt((a*a)+(b*b));
-
+				
+			distance=sqrt(pow(a,2)+pow(b,2));
 			if(distance<temp)
 			{
 				temp=distance;
@@ -72,6 +71,10 @@ void closest_city(int city_index, struct CITY *cities, int size)
 		}		
 
 	}
+	a=cities[city_index].lon-cities[closest_index].lon;
+	b=cities[city_index].lat-cities[closest_index].lat;
+	distance=sqrt(pow(a,2)+pow(b,2));
+	printf("\n\na= %lf, b= %lf, distance: %d\n\n",a,b,distance);
 	printf(">>Closest City<<\nName: %s\nLat: %lf\nLon:%lf\nPop:%d\n",cities[closest_index].name,cities[closest_index].lat,cities[closest_index].lon,cities[closest_index].pop);
 
 }
