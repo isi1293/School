@@ -10,21 +10,27 @@ int ingest(char *filename){
 	char buffer[500],savebuffer[500];
 	int i=0; //counter for first while loop
 	
+	//open file for reading 
 	fp=fopen(filename,"r");
 	if(fp == NULL){
 		printf("Could not open file\n");
 		return 1;
 	}
-	//process the file
+	//Call to initialize function, creates sentinel node
+	//i.e.the foundation of the linked list
 	if(init() != 0){
 		printf("Unsuccessful Initialization\n");
 	}
-
+	
+	//parse through data file until last line (NULL)
 	while(fgets(buffer,500,fp) != NULL){
 		buffer[-1+strlen(buffer)]='\0';
+		//rm newline
 		strcpy(savebuffer,buffer);
-		//replace trailing newline with null terminator
+		//save buffer because it is altered in newcity function through strtok
 		if(newcity(buffer,i) != 0){
+			//newcity will return a specific error if it is unable to parse
+			//Error is printed in conjunction with line below
 			printf("[ingest.c: ingest] Could not ingest line [%d]: <%s>\n",i,savebuffer);
 			i++;
 			continue;
@@ -37,12 +43,22 @@ int ingest(char *filename){
 }
 
 int newcity(char *citydat,int index){
+	//Desc: takes 2 arguments, line of city data and the index
+	//of that line. In short, newcity either populates a new node
+	//or prints an error in the parsing process.
+	
 	char saveline[100],buffer[50];
 	//copy of citydat, and buffer for strtok return
 	char *field,name[120];
 	double lat,lon;
 	int pop,flag=0;
-	//variables for storage of strtok
+
+	//Variables for storage of strtok
+	//Flag use: flag is used for case handling. Since city data
+	//is mostly uniform, this flag is useful in capturing cases
+	//where the data recieved is not what the program expects
+	//(i.e four fields [name|lat|lon|pop]
+	
 	strcpy(saveline,citydat);//just in case I need this
 	field=strtok(citydat,"|");
 	while(field != NULL){
@@ -88,15 +104,17 @@ int newcity(char *citydat,int index){
 		printf("[ingest.c: newcity()] Not enough fields on line [%d]\n",index);
 		return 1;
 	}
-	//Add parsed data to appropriate fields in node->data
+	//If data is uniform, create a new node and add parsed data to appropriate fields in node->data
 	add(name,lat,lon,pop);
 	return 0;
 }
 
 int which_command(char *input){
+	//Desc: This command takes user input and 
+	//determines the desired command/behavior
 	char *field,copy[100];
 	int help,remove,print_list;
-	int flag=0;
+	//variables to store strcmp return for clarity
 
 	strcpy(copy,input);
 	//This copy preserves orignal input before mutilation by strtok

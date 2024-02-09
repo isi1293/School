@@ -6,9 +6,11 @@
 
 #include "list.h" //Header with prototypes/libraries
 
-struct node *sentinel;
+struct node *sentinel; //Global sentinel
 
 struct node *new(){
+	//desc: new function creates a new node, allocating the 
+	//appropriate mem in the appropriate fields. Appropriately.
 	struct node *new_node;
 	struct city *new_city;
 	new_node=malloc(sizeof(struct node));
@@ -21,11 +23,16 @@ struct node *new(){
 int init(){
 	sentinel=new();
 	free(sentinel->data);
+	//memory allocated for city structure by new 
+	//will not be used, so free immediately
 	sentinel->data=NULL;
 	return 0;
 }
 
 int add(char *iname,double ilat,double ilon,int ipop){
+	//Desc: recieve parsed data from newcity function
+	//in ingest.c. Use this data to create a new node.
+	//Then, sandwich that node.
 	//For clarity, incoming variables prefixed with i
 	struct node *temp,*new_node;
 	temp=sentinel;
@@ -43,11 +50,12 @@ int add(char *iname,double ilat,double ilon,int ipop){
 			new_node->data->pop=ipop;
 			new_node->next=temp->next;
 			temp->next=new_node;
+			//sandwich that new node
 			return 0;
 		}
 		temp=temp->next;
 	}
-	//In case this is first node, or node with lowest data value
+	//In case the of first node, or node with lowest data value
 	new_node=new();
 	strcpy(new_node->data->name,iname);
 	new_node->data->lat=ilat;
@@ -59,7 +67,7 @@ int add(char *iname,double ilat,double ilon,int ipop){
 }
 
 int delete(char *cityname){
-	//Desc: delete specified node & free memory
+	//Desc: delete node specified in which_command() from ingest.c
 	struct node *temp,*save;
 	temp=sentinel;
 	while(temp->next != NULL){
@@ -70,10 +78,11 @@ int delete(char *cityname){
 			free(save->data);
 			free(save);
 			return 0;
+			//skip over the node, free, then return
 		}
 		temp=temp->next;
 	}
-	//If fn made it this far, there is no match to delete
+	//If delete() made it this far, there is no match to delete
 	printf("Did not find <%s>, could not delete\n",cityname);
 	return 1;
 }
@@ -124,7 +133,6 @@ int print_all(){
 	struct node *temp;
 	temp=sentinel->next;
 	int i=0; //Optional counter
-	//while(temp->next != NULL){ code below may cause seg fault, maybe
 	while(temp != NULL){
 		printf("City: %s   Lat: %lf   Lon: %lf   Population: %d\n",temp->data->name,temp->data->lat,temp->data->lon,temp->data->pop);
 		temp=temp->next;
