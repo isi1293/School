@@ -20,6 +20,7 @@ struct node *new(){
 
 int init(){
 	sentinel=new();
+	free(sentinel->data);
 	sentinel->data=NULL;
 	return 0;
 }
@@ -66,6 +67,7 @@ int delete(char *cityname){
 			//Found match
 			save=temp->next;
 			temp->next=temp->next->next;
+			free(save->data);
 			free(save);
 			return 0;
 		}

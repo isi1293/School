@@ -27,7 +27,7 @@ int main(int argc,char **argv){
 			printf("> ");
 			if(fgets(buffer,sizeof(buffer),stdin) == NULL){
 				printf("Goodbye!\n");
-				//release();
+				release();
 				return 0;
 			}
 			else{
