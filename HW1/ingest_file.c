@@ -10,8 +10,9 @@
 int ingest_file(FILE *fp,struct CITY cities[50])
 {
 	int size;
-	char filename[]="/usr/local/data/cities.dat";
+	char filename[]="//home/notisaac/Clark/CSE222/School/HW1/cities.dat";
 		//For local use: /home/notisaac/Clark/CSE222/School/HW1/cities.dat
+		//For server use: usr/local/data/cities.dat
 	char buffer[200];//buffer to store individual lines from the file for parsing
 	
 	fp = fopen(filename, "r");
