@@ -25,7 +25,7 @@ int main(int argc,char **argv){
 	//Hardcoded filename for debugging
 //------------------------------------------------------------------------------------
 
-	if((ingest(argv[1]) == 0)){
+	if(ingest("/home/notisaac/Clark/CSE222/School/HW2/cities2-bad.dat") == 0){
 	//Successfully ingested file
 		while(1){
 			//Loop until user breaks with CTRL-D

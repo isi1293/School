@@ -31,7 +31,7 @@ int ingest(char *filename){
 		if(newcity(buffer,i) != 0){
 			//newcity will return a specific error if it is unable to parse
 			//Error is printed in conjunction with line below
-			printf("[ingest.c: ingest] Could not ingest line [%d]: <%s>\n",i,savebuffer);
+			printf("[ingest.c: ingest()] Could not ingest line [%d]: <%s>\n",i,savebuffer);
 			i++;
 			continue;
 		}
@@ -70,7 +70,7 @@ int newcity(char *citydat,int index){
 		}
 		if(flag==1){
 			if(sscanf(field,"%lf",&lat) != 1){
-				printf("[ingest.c: newcity] Invalid lat field on line [%d]\n",index);
+				printf("[ingest.c: newcity()] Invalid lat field on line [%d]\n",index);
 				return 1;
 			}
 			flag++;
@@ -79,7 +79,7 @@ int newcity(char *citydat,int index){
 		}
 		if(flag==2){
 			if(sscanf(field,"%lf",&lon) != 1){
-				printf("[ingest.c: newcity] Invalid lon field on line [%d]\n",index);
+				printf("[ingest.c: newcity()] Invalid lon field on line [%d]\n",index);
 				return 1;
 			}
 			flag++;
@@ -88,7 +88,7 @@ int newcity(char *citydat,int index){
 		}
 		if(flag==3){
 			if(sscanf(field,"%d",&pop) != 1){
-				printf("[ingest.c: newcity] Invalid pop field on line [%d]\n",index);
+				printf("[ingest.c: newcity()] Invalid pop field on line [%d]\n",index);
 				return 1;
 			}
 			flag++;
@@ -96,7 +96,7 @@ int newcity(char *citydat,int index){
 			continue;
 		}
 		if(flag==4){
-			printf("[ingest.c: newcity] Too many fields on line on line [%d]\n",index);
+			printf("[ingest.c: newcity()] Too many fields on line on line [%d]\n",index);
 			return 1;
 		}
 	}
