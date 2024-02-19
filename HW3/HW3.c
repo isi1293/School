@@ -5,8 +5,8 @@ int testing();
 
 int main(int argc,char **argv){
 	HASHENTRY *hashtable;
-	//hashtable=inithash();
-	testing();
+	hashtable=inithash();
+	//testing();
 }
 
 int testing(){
