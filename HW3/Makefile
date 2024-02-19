@@ -9,4 +9,4 @@ hash.o: hash.c
 ingest.o: ingest.c
 	gcc $(gcc_sw) -c ingest.c
 clean:
-	rm HW3 H3.o list.o hash.o ingest.o 
+	rm HW3 HW3.o list.o hash.o ingest.o 

@@ -1,7 +1,8 @@
 #include "list.h"
+#include "hash.h"
 
 struct node *init(){
-	struct node *sentinel;
+	struct node *sent;
 	sent=malloc(sizeof(struct node));
 	sent->word=NULL;
 	sent->def=NULL;
@@ -13,7 +14,7 @@ void add(struct node *sentinel, char *word, char *def){
 	struct node *new,*temp;
 	temp=sentinel;
 	new=malloc(sizeof(struct node));
-	new->word=word;
+	strcpy(new->word,word);
 	new->def=def;
 	new->next=temp->next;
 	temp->next=new;
@@ -33,8 +34,7 @@ char *find(struct node *sentinel, char *word){
 
 int delete(struct node *sentinel, char *word){
 	struct node *temp,*save;
-	temp=sentinel;
-	while(temp->next != NULL){
+	temp=sentinel; while(temp->next != NULL){
 		if(strcmp(temp->next->word,word) == 0){
 			save=temp;
 			temp->next=temp->next->next;
@@ -46,7 +46,7 @@ int delete(struct node *sentinel, char *word){
 		temp=temp->next;
 	}
 	//No match found
-	prinf("[File:list.c Fn:delete, could not delete <%s>, no match found\n", word);
+	printf("[File:list.c Fn:delete, could not delete <%s>, no match found\n", word);
 }
 		
 void freelist(struct node *sentinel){

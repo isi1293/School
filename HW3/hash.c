@@ -11,7 +11,7 @@ int hash(char *word){
 
 }
 
-void addhash(HASHENTRY *hashtable, char *word){
+void addhash(HASHENTRY *hashtable, char *word, char *def){
 
 }
 

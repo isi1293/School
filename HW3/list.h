@@ -8,6 +8,8 @@ struct node{
 	struct node *next;
 };
 
+struct node *init();
+//initializes sentinel node
 void add(struct node *sentinel, char *word, char *def);
 //make a new node containing word and defand add to 
 //given linked list

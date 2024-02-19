@@ -1,17 +1,19 @@
 #include "list.h"
+#include "hash.h"
+
+int testing();
 
 int main(int argc,char **argv){
 	HASHENTRY *hashtable;
-	hashtabe=inithash();
+	//hashtable=inithash();
 	testing();
 }
 
-int testing(void){
+int testing(){
+	char *word="pineapple",*def="A nice fruit"; 
+	struct node *sentinel_1;
 	sentinel_1=init();
-	add(sentinel_1,"cherry","A nice fruit");
-	add(sentinel_1,"boat","Let me drive");
-	add(sentinel_1,"mouse","Vermin");
-	add(sentinel_1,"family","Dom torreto");
+	add(sentinel_1,string1,string2);
 	printlist(sentinel_1);
 	return 0;
 }
