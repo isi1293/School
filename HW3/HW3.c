@@ -17,6 +17,12 @@ int testing(){
 	add(sentinel_1,"bomboclat","many things");
 	add(sentinel_1,"bop lore","F in the chat");
 	printlist(sentinel_1);
+	find(sentinel_1,"bomboclat");
+	find(sentinel_1,"this one");
+	delete(sentinel_1,"bomboclat");
+	printf("List length:%d\n",listlen(sentinel_1));
+	printlist(sentinel_1);
+	freelist(sentinel_1);
 	return 0;
 }
 

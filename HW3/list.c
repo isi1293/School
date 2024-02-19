@@ -14,9 +14,11 @@ void add(struct node *sentinel, char *word, char *def){
 	struct node *new,*temp;
 	temp=sentinel;
 	new=malloc(sizeof(struct node));
-	new->word=malloc(sizeof(word));
+	new->word=malloc(1+strlen(word));
+	//plus 1 to accomodate '\0'
 	strcpy(new->word,word);
-	new->def=def;
+	new->def=malloc(1+strlen(def));
+	strcpy(new->def,def);
 	new->next=temp->next;
 	temp->next=new;
 }
@@ -27,27 +29,34 @@ char *find(struct node *sentinel, char *word){
 	while(temp != NULL){
 		if(strcmp(temp->word,word) == 0){
 			//found a match
+			printf("[list.c][find()] Found match for <%s>\nDefinition:%s\n",word,temp->def);
 			return temp->def;
 		}
 		temp=temp->next;
 	}
+	//No match found
+	printf("[list.c][find()] No matching key for <%s>\n",word);
+	return NULL;
 }
 
 int delete(struct node *sentinel, char *word){
 	struct node *temp,*save;
-	temp=sentinel; while(temp->next != NULL){
+	temp=sentinel; 
+	while(temp->next != NULL){
 		if(strcmp(temp->next->word,word) == 0){
-			save=temp;
+			save=temp->next;
 			temp->next=temp->next->next;
 			free(save->word);
 			free(save->def);
 			free(save);
+			printf("[list.c][delete()] Removed entry for <%s>\n",word);
 			return 0;
 		}
 		temp=temp->next;
 	}
 	//No match found
-	printf("[File:list.c Fn:delete, could not delete <%s>, no match found\n", word);
+	printf("[list.c][delete()] Could not delete <%s>\n", word);
+	return 1;
 }
 		
 void freelist(struct node *sentinel){
