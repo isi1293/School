@@ -31,4 +31,9 @@ void printload(HASHENTRY *hashtable);
 //Keep to 2 lines of code
 
 
+//--list.c prototypes--
+
+
+int ingest(HASHENTRY *hashtable,char *filename);
+
 
