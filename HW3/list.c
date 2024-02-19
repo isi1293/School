@@ -14,6 +14,7 @@ void add(struct node *sentinel, char *word, char *def){
 	struct node *new,*temp;
 	temp=sentinel;
 	new=malloc(sizeof(struct node));
+	new->word=malloc(sizeof(word));
 	strcpy(new->word,word);
 	new->def=def;
 	new->next=temp->next;
@@ -70,7 +71,7 @@ void printlist(struct node *sentinel){
 	struct node *temp;
 	temp=sentinel->next;
 	while(temp != NULL){
-		printf("Word: %s, Definition: %s\n",temp->word,temp->def); 
+		printf("Word:%s, Definition:%s\n",temp->word,temp->def); 
 		temp=temp->next;
 	}
 }
