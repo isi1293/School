@@ -5,11 +5,12 @@ int ingest(HASHENTRY *hashtable,char *filename){
 	FILE *fp;
 	char word[120],def[1025];
 	int tally[SIZE]={0};
-	fp=fopen("/home/notisaac/Clark/CSE222/School/HW3/testfile.txt","r");
+	fp=fopen(filename,"r");
 	if(fp == NULL){
 		printf("Could not open file\n");
 		return 1;
 	}
+
 	while(fgets(word,sizeof(word),fp) != NULL){
 		word[-1+strlen(word)]='\0';
 		tally[hash(word)]+=1;
