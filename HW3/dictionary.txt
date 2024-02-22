@@ -6566,3 +6566,5 @@ zero
 0, naught
 zone
 geographical region
+radiation
+fast wave poison

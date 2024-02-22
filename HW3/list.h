@@ -25,7 +25,3 @@ void printlist(struct node *sentinel);
 //print pairs of words/defs from the given list
 int listlen(struct node *sentinel);
 //print the length of the given list (0 for an empty list)
-
-
-//-----Prototypes for ingest.c function-----
-

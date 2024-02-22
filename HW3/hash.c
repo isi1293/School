@@ -12,11 +12,11 @@ HASHENTRY *inithash(){
 }
 
 int hash(char *word){
-	int hashed,sum=0;
+	long int hashed,sum=0;
 	for(int i=0;i<(strlen(word));i++){
-		sum+=(pow(i+1,2)*pow(word[i+1],3));
+		sum+=(pow(i+1,2)*pow(word[i],3));
+		hashed=sum%SIZE;
 	}
-	hashed=sum%SIZE;
 	return hashed;
 }
 
@@ -45,13 +45,14 @@ void freehash(HASHENTRY *hashtable){
 
 void printhash(HASHENTRY *hashtable){
 	for(int i=0;i<SIZE;i++){
+		printf("***************\n   Entry %d   \n***************\n",i);
 		printlist(hashtable[i]);
 	}
 }
 
 void printload(HASHENTRY *hashtable){
 	for(int i=0;i<SIZE;i++){
-		printf("[%d] Length:%d\n",i,listlen(hashtable[i]));
+		printf("Entry[%d] Length:%d\n",i,listlen(hashtable[i]));
 	}
 }
 

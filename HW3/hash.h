@@ -30,10 +30,3 @@ void printload(HASHENTRY *hashtable);
 //print length of each linked list in the hash table.
 //Keep to 2 lines of code
 
-
-//--list.c prototypes--
-
-
-int ingest(HASHENTRY *hashtable,char *filename);
-
-

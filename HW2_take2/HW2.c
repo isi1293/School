@@ -11,12 +11,13 @@ int main(int argc,char **argv){
 	//buffer for user input
 	
 	
-	if(argc != 2){
+	/*if(argc != 2){
 		//Program execution requires location to the database.
 		//if the second field is missing, return error.
 		printf("[HW2.c: main] Invalid call to main\n");
 		return 1;
 	}
+	*/
 
 //--------------------------Testing Tings---------------------------------------------
 	//if(ingest("/home/notisaac/Clark/CSE222/School/HW2/cities2.dat") == 0){
