@@ -1,5 +1,4 @@
 gcc_sw="-g"
-
 HW3: HW3.o list.o hash.o list.h hash.h
 	gcc $(gcc_sw) -o HW3 HW3.o list.o hash.o -lm
 HW3.o: HW3.c

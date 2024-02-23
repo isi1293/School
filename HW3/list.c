@@ -1,7 +1,14 @@
+//Isaac Osorio Beltran
+//Prof. Nick Macias
+//list.c description: list.c contatins all of the functions of a linked list. 
+//These functions have been modified to handle interaction with a hashtable
+//(an array of linked lists).
+
 #include "list.h"
 #include "hash.h"
 
 struct node *init(){
+	//[init()] desc: initializes new node
 	struct node *sent;
 	sent=malloc(sizeof(struct node));
 	sent->word=NULL;
@@ -11,6 +18,7 @@ struct node *init(){
 }
 
 void add(struct node *sentinel, char *word, char *def){
+	//[add()] desc: adds new node to specified linked list
 	struct node *new,*temp;
 	temp=sentinel;
 	new=malloc(sizeof(struct node));
@@ -24,6 +32,8 @@ void add(struct node *sentinel, char *word, char *def){
 }
 
 char *find(struct node *sentinel, char *word){
+	//[find()] desc: looks for word match in specified
+	//linked list.
 	struct node *temp;
 	temp=sentinel->next;
 	while(temp != NULL){
@@ -40,6 +50,8 @@ char *find(struct node *sentinel, char *word){
 }
 
 int delete(struct node *sentinel, char *word){
+	//[delete()] desc: deletes node specified
+	//by the given word value
 	struct node *temp,*save;
 	temp=sentinel; 
 	while(temp->next != NULL){
@@ -60,6 +72,8 @@ int delete(struct node *sentinel, char *word){
 }
 		
 void freelist(struct node *sentinel){
+	//[freelist()] desc: frees mem allocated to each 
+	//node in specified linked list.
 	struct node *temp,*prev;
 	temp=sentinel->next;
 	prev=sentinel;
@@ -77,6 +91,8 @@ void freelist(struct node *sentinel){
 }
 
 void printlist(struct node *sentinel){
+	//[printlist()] desc: prints the contents of 
+	//specified linked list.
 	struct node *temp;
 	temp=sentinel->next;
 	while(temp != NULL){
@@ -86,6 +102,8 @@ void printlist(struct node *sentinel){
 }
 
 int listlen(struct node *sentinel){
+	//[listlen()] desc: returns the length of
+	//specified linked list.
 	struct node *temp;
 	int count=0;
 	temp=sentinel->next;

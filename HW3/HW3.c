@@ -6,14 +6,14 @@
 //
 //=========== Hierarchy of the program =================
 //
-//               HW3.c
-//                |    \   list.h
+//               HW3.c			
+//                |    \   hash.h
 //                |     \    ^
 //                V      \   |
 //               Hash.c----->*
 //                |      /   |
 //                |     /    V
-//                V    /    hash.h
+//                V    /    list.h
 //               List.c
 //
 //======================================================
@@ -37,6 +37,8 @@ int ingest(HASHENTRY *hashtable,char *filename,FILE *fp);
 
 
 int main(int argc,char **argv){
+	//[main()] desc: The main function handles input and determines the 
+	//desired behavior
 	
 	if(argc != 2){
 		if(argc>2) printf("[HW3.c][main()] Invalid call to program, too many arguments\n");
@@ -54,7 +56,7 @@ int main(int argc,char **argv){
 	char buffer[120];
 	FILE *fp;
 
-	//IGNORE Hardcode for testing on local machine:
+	//IGNORE: Hardcode for testing on local machine
 	//if(ingest(hashtable,"/home/notisaac/Clark/CSE222/School/HW3/dictionary.txt",fp)==0){
 	
 	if(ingest(hashtable,argv[1],fp)==0){
@@ -76,6 +78,8 @@ int main(int argc,char **argv){
 
 
 int ingest(HASHENTRY *hashtable,char *filename,FILE *fp){
+	//[ingest()] desc: ingest the specified file, 
+	//store data in hashtable
 
 	char word[120],def[1025];
 	int tally[SIZE]={0};
@@ -103,7 +107,10 @@ int ingest(HASHENTRY *hashtable,char *filename,FILE *fp){
 }
 
 int which_command(HASHENTRY *hashtable,char *command){
-	//commands to take: *, *delete, ?, *word
+	//[which_command()] desc: determine desired command.
+	//Possible commands: *, *delete, ?, *word, *load,
+	//else, treat as a word to search for
+	
 	char *field,copy[1024];
 	int help,remove,print_table,load;
 
