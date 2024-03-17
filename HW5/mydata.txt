@@ -1,0 +1,4 @@
+mouse 5 1
+cellphone 100 2
+tablet 200 5
+laptop 1000 10
